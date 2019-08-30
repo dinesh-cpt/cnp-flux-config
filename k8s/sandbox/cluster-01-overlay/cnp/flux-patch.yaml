@@ -1,0 +1,10 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: plum-recipe-backend-test
+  namespace: cnp
+spec:
+  values:
+    java:
+      image: hmctspublic.azurecr.io/plum/recipe-backend:prod-a9fcfda5
