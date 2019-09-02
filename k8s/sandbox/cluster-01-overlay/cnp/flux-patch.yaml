@@ -7,4 +7,4 @@ metadata:
 spec:
   values:
     java:
-      image: hmctspublic.azurecr.io/plum/recipe-backend:pr-60
+      image: hmctspublic.azurecr.io/plum/recipe-backend:pr-59-4686434f
