@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-dns
+  namespace: admin
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: external-dns
+  namespace: admin
+rules:
+- apiGroups: [""]
+  resources: ["services","endpoints","pods"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["extensions"] 
+  resources: ["ingresses"] 
+  verbs: ["get","watch","list"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: external-dns-viewer
+  namespace: admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: external-dns
+subjects:
+- kind: ServiceAccount
+  name: external-dns
+  namespace: admin
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: external-dns
+  namespace: admin
+spec:
+  encryptedData:
+    AZURE_CLIENT_ID: AgCLl1eYFWBG3kHSDRPaCkUlgE3199Synr80l6iQOIZqXFeuqw66ctLxpEnXKygCi6Kik7VEBYu+qru9CgIRLlBt/19sqPgrlrIqeLRMXKWfPYwMv+Ntw1Ggqn2w/wKczZsuFoPpU3hdl7aLjXAAu/MKpnJsDag+7ljdkAKho6Yk03vPetJ1CFLiyEDOFhCMrhGYRcTF26hvFaLLzTZPzZgH4pH/eo0mxGvNGBiDjUCWsViH4iXiZjQTtITmgGzk6ORl6G1NnjgeuHAK8a0m3DabGxBPrrNmNLhh+lBbEr/wA/Fag6uATGDKj4FEAD1sdlpDv1kJL6PPxqXV0bgWLTSfvZvrHQEkzinRzPxxNkBZgJYM1mmtGpdbCr2XPqZDiDYim1lRov7AWDgcSzmh7ia+FYLxRLdQuZhat1X4HPLjPlWVIVvjZAbUqlOV/nC+XRApkC35PupJ+kJGydIAAaTpYUus26wTn49T7YlRRVnGyXwJPxilSKaMgP6GbbCjwXS+Yu6kNRo9KPj8w5FwAdEpPBAO1TWaaoLkw5X8hVnLmShUzn+Y+Ad1RuSzh2TJQ/W+JUZPtWIsZ0yStmU3bqntu65uXTG8l+Q1i5r+uA4ZFc50e1S3Iyr4Nfg8+W+aHvFKcEG994To4YTVTi7FhHO5lqa30zXHGwBKt5bKi16llRIsyJZmwZas7sDPWJhDG3EVkxqzBayuS9kDKV/XPzQO5Wb9Itj6QsTmYPysNEEb8A3tbHE=
+    AZURE_CLIENT_SECRET: AgBXsdO4nSIMHFBrmTqd2AHeq+UuPyO29EwaiFx974f5fhBOtIfDUi+ngMlJ2kZBgyK0b1jxUk5dM1d9fNkbZLreB30z2tPUDBGNekWxAvI4eT5MjAbeI2/Ujjb6d45bi5MQpCBLrk1mlratZK5QDc7w58aWgiN+/4Br6BQnmVdeGpP1yhdWr3CDkaf4FXa+xm2TCfkU+i+jVF4PG8TDQgyH0zmkh53LnEZp3yg7HxLZ+9OfphmigROq6L8JfVcW8wy/bDs0jJmu1CjjZ0QkLPANb6TJuVCO42gXHtCz0nZKGM5LIwL0fkzrrJz9hg7Tg7N02Nt7jddZPDoiAzGhqWzdTuCED7MQg7EljNYmM3wny3epUL2p3usMGenm72tEESZ8I4bgS7H9FySz5AqqZ9hTB5zNGyM3ob6wuBYdMsS7QsR8Xwz4QWyM+Hcd8bLcM4gYeSjAPFkH+Y5ZEcoypJZXFnt5FjQQltPGIEy4JkxPT3h3c31xIiZW48DS1vZVW1V/u+pksOULMiQWxTLM/LJsZF+yXC+uAHBtPnxoQQ6KMQhAu/pY9Zctm4tO6DhfyBEEVmQjWXytyVaZKAkhpuMbb5lVqtgS2SUKSz8+HsoWS/NV1t6z/arugT7T7Qi8uWS/A4VMmAKHIsB22Id0c/rGWq8HDK3dR0Cyl1LkcLqLaM0rzPJrz7AQUQEAUStHGTUYpTA8KblKuJCJ89k1kRNl0hr4Xb47aBKoll+YXMyJMg==
+    AZURE_TENANT_ID: AgBa3RQJFhTn4JYM2XT5Og6maBadXyqfuqMYD7kqYm/Sl+pa/6uhbUfOkfqQoaRk6U57/6mpy0lvwFc70tWWvcrHODRhweQ46S+Qv4Ye/L0WesN61PFR5EJP3Cbq2EFDmgKU96wawpkKYtL3F9K2vM9yWuA0aGEeeAJTZTIM9S64eye+RGbbWsau/fC8u8iiXaiFiInijwmI5mavbKFYcwfBLGo1nCGKFqUsCloAKaDjFcL/ChXr4Ow5UsrRMpKLF5fD2Syen7UsAS3xxNKIfrCI9RuW+vPlhZnnE62tLjM0B03j16BI0pRLalBC/gcd6kjHGHqTm1/LDU0bmbhPT45nTNJEYn2y8pD4FACVcFwKPxgT75PN9CuMT0B0Uagh6txYnqkEgTi+JzLFyJMN4LOGbpjj+wqmG6KCO8nIN5QNB8xYX4P/I0nN3IqW3+GHT4ogm28Bww5PKTZwp9DFIUgrifg89wbkQVnpuE4VPwaq7yQdVeryCj3cipj8z03bWWk3rQ/fhcvOWpeJopyWHS8vPKl5tH3yN9vFHDnEOYtNZ+6KixouxEWRIFwmWxGLHm1H6UuU+wPj5Lf/R8/uEoueL8sOQK6dPkIp7hhRF1+r800O6uziNDDB54y89cr7XGhJY/IwqOD0ma7946oTqkM4uAyI/kNtNtLkOABI8ngQi5lBCdmNQTm8h0CSb5ZsBvyDb6aJECwFo7513FEyqrgl6kLpw0/QetPPWooR4szn0tm1WDs=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: external-dns
+      namespace: admin
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: admin
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+      - name: externaldns
+        image: eu.gcr.io/k8s-artifacts-prod/external-dns/external-dns:v0.7.1
+        args:
+        - --source=ingress
+        - --domain-filter=service.core-compute-sandbox.internal
+        - --domain-filter=sandbox.platform.hmcts.net
+        - --provider=azure-private-dns
+        - --azure-resource-group=mgmt-intdns-stg
+        - --azure-subscription-id=5955587a-28ba-4bae-bc74-db5ae145a103
+        env:
+        - name: AZURE_TENANT_ID
+          valueFrom: 
+            secretKeyRef:
+              name: external-dns
+              key: AZURE_TENANT_ID
+        - name: AZURE_CLIENT_ID
+          valueFrom: 
+            secretKeyRef:
+              name: external-dns
+              key: AZURE_CLIENT_ID
+        - name: AZURE_CLIENT_SECRET
+          valueFrom: 
+            secretKeyRef:
+              name: external-dns
+              key: AZURE_CLIENT_SECRET
