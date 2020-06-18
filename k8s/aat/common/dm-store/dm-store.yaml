@@ -25,6 +25,7 @@ spec:
       ingressHost: dm-store-aat.service.core-compute-aat.internal
       environment:
         ENABLE_TTL: "true"
+        SERVER_FORWARD_HEADERS_STRATEGY: "none"
       testsConfig:
         memoryLimits: "3072Mi"
         environment:
