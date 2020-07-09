@@ -7,5 +7,8 @@ bases:
 
 patchesStrategicMerge:
   #rpe patches
-  - ../../../namespaces/rpe/service-auth-provider/patches/sandbox/rpe-service-auth-provider.yaml
   - ../../../namespaces/rpe/draft-store/sandbox.yaml
+patches:
+  - path: sandbox.yaml
+    target:
+      kind: HelmRelease
