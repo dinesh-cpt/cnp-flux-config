@@ -8,4 +8,4 @@ bases:
 patchesStrategicMerge:
   #rpe patches
   - ../../../namespaces/rpe/service-auth-provider/patches/sandbox/rpe-service-auth-provider.yaml
-  - ../../../namespaces/rpe/draft-store/patches/sandbox/draft-store-service.yaml
+  - ../../../namespaces/rpe/draft-store/sandbox.yaml
