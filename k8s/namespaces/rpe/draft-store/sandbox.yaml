@@ -9,5 +9,3 @@ spec:
     java:
       environment:
         IDAM_URL: http://idam-api.idam-sprod
-    global:
-      environment: sandbox
