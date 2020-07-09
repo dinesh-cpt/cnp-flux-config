@@ -9,6 +9,6 @@ patchesStrategicMerge:
   #rpe patches
   - ../../../namespaces/rpe/draft-store/sandbox.yaml
 patches:
-  - path: sandbox.yaml
+  - path: ../../sandbox-helmrelease.yaml
     target:
       kind: HelmRelease
