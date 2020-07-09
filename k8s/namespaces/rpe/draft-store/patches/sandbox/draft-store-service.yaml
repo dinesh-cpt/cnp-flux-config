@@ -1,0 +1,13 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: draft-store-service
+  namespace: rpe
+spec:
+  values:
+    java:
+      environment:
+        IDAM_URL: http://idam-api.idam-sprod
+    global:
+      environment: sandbox

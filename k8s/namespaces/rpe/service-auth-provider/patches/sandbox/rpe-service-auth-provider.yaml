@@ -1,0 +1,10 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: rpe-service-auth-provider
+  namespace: rpe
+spec:
+  values:
+    global:
+      environment: sandbox

@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../namespaces/rpe/
+  - ../../namespaces/rpe/draft-store
+  - ../../namespaces/rpe/service-auth-provider
+
+patchesStrategicMerge:
+  #rpe patches
+  - ../../namespaces/rpe/service-auth-provider/patches/sandbox/rpe-service-auth-provider.yaml
+  - ../../namespaces/rpe/draft-store/patches/sandbox/draft-store-service.yaml
