@@ -10,7 +10,6 @@ bases:
   - ../../namespaces/kured
   - ../../namespaces/monitoring
   - ../../namespaces/monitoring/node-problem-detector
-  - ../../namespaces/monitoring/kuberhealthy
   - ../../namespaces/admin/env-injector
   - ../../namespaces/knode-system
 
