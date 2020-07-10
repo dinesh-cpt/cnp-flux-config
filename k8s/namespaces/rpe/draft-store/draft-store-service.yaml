@@ -14,6 +14,6 @@ spec:
     java:
       replicas: 2
       useInterpodAntiAffinity: true
-      image: hmctspublic.azurecr.io/draft-store/service:prod-304842c9
+      image: hmctspublic.azurecr.io/draft-store/service:latest
       environment:
         S2S_URL: http://rpe-service-auth-provider-java.rpe
