@@ -7,6 +7,6 @@ metadata:
 spec:
   values:
     git:
-      path: "k8s/sandbox/common,k8s/sandbox/cluster-01,k8s/sandbox/cluster-01-overlay,k8s/common,k8s/sandbox/common/overlay"
+      path: "k8s/sandbox/common,k8s/sandbox/cluster-01,k8s/sandbox/cluster-01-overlay,k8s/common,k8s/sandbox/common-overlay"
       label: "sandbox-cluster-01"
       branch: "testkustomize"
