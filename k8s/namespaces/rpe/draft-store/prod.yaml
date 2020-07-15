@@ -8,5 +8,4 @@ spec:
   values:
     java:
       environment:
-        IDAM_URL: http://idam-api.idam-sprod
-        S2S_URL: http://rpe-service-auth-provider-java.rpe
+        IDAM_URL: https://idam-api.platform.hmcts.net
