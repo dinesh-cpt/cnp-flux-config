@@ -1,0 +1,27 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: draft-store-service
+  namespace: rpe
+spec:
+  values:
+    java:
+      functionaltests:
+        image: hmctspublic.azurecr.io/draft-store/service-test:prod-167db162
+      functionaltestscron:
+        image: hmctspublic.azurecr.io/draft-store/service-test:prod-167db162
+      smoketests:
+        image: hmctspublic.azurecr.io/draft-store/service-test:prod-167db162
+      smoketestscron:
+        image: hmctspublic.azurecr.io/draft-store/service-test:prod-167db162
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: rpe-service-auth-provider
+  namespace: rpe
+spec:
+  values:
+    java:
+      image: hmctspublic.azurecr.io/rpe/service-auth-provider:prod-79200c92
