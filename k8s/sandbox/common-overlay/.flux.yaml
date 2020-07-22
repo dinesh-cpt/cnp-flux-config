@@ -20,4 +20,7 @@ commandUpdated:
           yq w -i $file_name spec.values.java.image "$FLUX_IMG:$FLUX_TAG" &&
           cat $file_name &&
           git status &&
+          git add $file_name &&
+          git commit -m "explicit commit" &&
+          git push &&
           cat ../../name/test
