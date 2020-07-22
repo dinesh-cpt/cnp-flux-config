@@ -14,4 +14,5 @@ commandUpdated:
           yq w -i $file_name kind HelmRelease &&
           yq w -i $file_name metadata.name $FLUX_WL_NAME &&
           yq w -i $file_name metadata.namespace $FLUX_WL_NS &&
-          yq w -i $file_name $FLUX_CONTAINER.image "$FLUX_IMG:$FLUX_TAG"
+          yq w -i $file_name $FLUX_CONTAINER.image "$FLUX_IMG:$FLUX_TAG" &&
+          cat ../../test/test
