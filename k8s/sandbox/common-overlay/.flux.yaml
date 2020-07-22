@@ -10,7 +10,7 @@ commandUpdated:
           file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/sandbox.yaml &&
           touch $file_name &&
           echo $file_name &&
-          CONTAINER_PATH=$([ $FLUX_CONTAINER == *"tests"* ] && echo "java.$FLUX_CONTAINER.image" || echo "$FLUX_CONTAINER.image")
+          CONTAINER_PATH=$(([ $FLUX_CONTAINER == *"tests"* ] && echo "java.$FLUX_CONTAINER.image" || echo "$FLUX_CONTAINER.image"))
           echo $CONTAINER_PATH &&
           yq w -i $file_name 'apiVersion' helm.fluxcd.io/v1 &&
           yq w -i $file_name kind HelmRelease &&
