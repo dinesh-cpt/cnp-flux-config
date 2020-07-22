@@ -19,5 +19,5 @@ commandUpdated:
           yq w -i $file_name metadata.namespace $FLUX_WL_NS &&
           yq w -i $file_name spec.values.java.image "$FLUX_IMG:$FLUX_TAG" &&
           cat $file_name &&
-          git status
+          git status &&
           cat ../../name/test
