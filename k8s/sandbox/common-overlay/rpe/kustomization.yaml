@@ -7,4 +7,5 @@ bases:
 patchesStrategicMerge:
 #rpe patches
 - ../../../namespaces/rpe/draft-store-service/sandbox.yaml
+- ../../../namespaces/rpe/rpe-service-auth-provider/sandbox.yaml
 - ../../../namespaces/rpe/sandbox.yaml
