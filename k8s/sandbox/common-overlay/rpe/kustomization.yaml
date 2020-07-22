@@ -3,7 +3,7 @@ kind: Kustomization
 bases:
 - ../../../namespaces/rpe/namespace.yaml
 - ../../../namespaces/rpe/draft-store-service/draft-store-service.yaml
-- ../../../namespaces/rpe/s2s/rpe-service-auth-provider.yaml
+- ../../../namespaces/rpe/rpe-service-auth-provider/rpe-service-auth-provider.yaml
 patchesStrategicMerge:
 #rpe patches
 - ../../../namespaces/rpe/draft-store-service/sandbox.yaml
