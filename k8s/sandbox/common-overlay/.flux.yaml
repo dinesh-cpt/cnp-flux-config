@@ -15,4 +15,4 @@ commandUpdated:
           yq w -i $file_name metadata.name $FLUX_WL_NAME &&
           yq w -i $file_name metadata.namespace $FLUX_WL_NS &&
           yq w -i $file_name spec.values.$FLUX_CONTAINER.image "$FLUX_IMG:$FLUX_TAG" &&
-          grep -q $file_name $FLUX_WL_NS/kustomization.yaml ||  yq w -i $FLUX_WL_NS/kustomization.yaml "patchesStrategicMerge[+]" $file_name
+          ( grep -q $file_name $FLUX_WL_NS/kustomization.yaml ||  yq w -i $FLUX_WL_NS/kustomization.yaml "patchesStrategicMerge[+]" $file_name )
