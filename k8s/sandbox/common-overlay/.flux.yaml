@@ -11,5 +11,3 @@ commandUpdated:
           echo $FLUX_CONTAINER
           echo $FLUX_TAG
           echo $FLUX_IMG
-          file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/sandbox.yaml
-          
