@@ -9,11 +9,9 @@ commandUpdated:
           (yq --version || (wget -O /usr/local/bin/yq "https://github.com/mikefarah/yq/releases/download/3.2.0/yq_linux_amd64" && chmod +x /usr/local/bin/yq)) &&
           file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/sandbox.yaml &&
           touch $file_name &&
-          echo $file_name &&
-          CONTAINER_PATH=$([[ $FLUX_CONTAINER =~ .*"tests".* ]] && echo "java.$FLUX_CONTAINER.image" || echo "$FLUX_CONTAINER.image") &&
+          if echo $FLUX_CONTAINER |grep "tests" - > /dev/null; then FLUX_CONTAINER=java.tests; fi &&
           yq w -i $file_name 'apiVersion' helm.fluxcd.io/v1 &&
           yq w -i $file_name kind HelmRelease &&
           yq w -i $file_name metadata.name $FLUX_WL_NAME &&
           yq w -i $file_name metadata.namespace $FLUX_WL_NS &&
-          yq w -i $file_name $CONTAINER_PATH "$FLUX_IMG:$FLUX_TAG" &&
-          cat ../../test/test
+          yq w -i $file_name $FLUX_CONTAINER.image "$FLUX_IMG:$FLUX_TAG"
