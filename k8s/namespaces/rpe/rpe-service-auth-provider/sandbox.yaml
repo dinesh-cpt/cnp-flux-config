@@ -6,4 +6,4 @@ metadata:
 spec:
   values:
     java:
-      image: hmctspublic.azurecr.io/rpe/service-auth-provider:prod-latest
+      image: hmctspublic.azurecr.io/rpe/service-auth-provider:prod-3756d812
