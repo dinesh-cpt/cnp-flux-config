@@ -2,7 +2,6 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: draft-store-service
-  namespace: rpe
   annotations:
     fluxcd.io/automated: "true"
     repository.fluxcd.io/java: java.image
