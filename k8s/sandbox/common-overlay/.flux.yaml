@@ -12,4 +12,5 @@ commandUpdated:
           yq w -i $file_name kind HelmRelease &&
           yq w -i $file_name metadata.name $FLUX_WL_NAME &&
           yq w -i $file_name metadata.namespace $FLUX_WL_NS &&
-          yq w -i $file_name spec.values.$FLUX_CONTAINER.image "$FLUX_IMG:$FLUX_TAG"
+          [[ $FLUX_CONTAINER == *"tests"* ]] && CONTAINER_PATH=java.$FLUX_CONTAINER || CONTAINER_PATH=$FLUX_CONTAINER &&
+          yq w -i $file_name $CONTAINER_PATH "$FLUX_IMG:$FLUX_TAG"
