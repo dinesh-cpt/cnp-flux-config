@@ -6,5 +6,10 @@ commandUpdated:
     - containerImage:
         command: >-
           yq --version || (wget -O /usr/local/bin/yq "https://github.com/mikefarah/yq/releases/download/3.2.0/yq_linux_amd64" && chmod +x /usr/local/bin/yq)
+          echo $FLUX_WL_NAME
+          echo $FLUX_WL_NS
+          echo $FLUX_CONTAINER
+          echo $FLUX_TAG
+          echo $FLUX_IMG
           file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/sandbox.yaml
-          touch $file_name
+          
