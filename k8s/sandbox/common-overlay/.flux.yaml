@@ -5,4 +5,4 @@ commandUpdated:
   updaters:
     - containerImage:
         command: >-
-          container-update.sh
+          ./container-update.sh
