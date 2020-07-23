@@ -5,4 +5,4 @@ commandUpdated:
   updaters:
     - containerImage:
         command: >-
-          ../../scripts/container-update.sh
+          ../../scripts/container-update.sh sandbox
