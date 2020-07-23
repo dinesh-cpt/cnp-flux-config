@@ -6,9 +6,6 @@ yq --version || (wget -O /usr/local/bin/yq "https://github.com/mikefarah/yq/rele
 file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/${ENV}.yaml
 touch $file_name
 
-#Hack - overriding container appending java. for handling tests
-if echo $FLUX_CONTAINER |grep "tests" - > /dev/null; then FLUX_CONTAINER=java.$FLUX_CONTAINER; fi
-
 #set image
 yq w -i $file_name spec.values.$FLUX_CONTAINER.image "$FLUX_IMG:$FLUX_TAG"
 
