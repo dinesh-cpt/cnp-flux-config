@@ -2,8 +2,7 @@ set -x
 ENV="$1"
 #Install yq if not present
 yq --version || (wget -O /usr/local/bin/yq "https://github.com/mikefarah/yq/releases/download/3.2.0/yq_linux_amd64" && chmod +x /usr/local/bin/yq)
-
-if grep -q "prod" <<< "$FLUX_TAG" ; then
+if $(echo $FLUX_TAG | grep -q 'prod-') ; then
   file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/$FLUX_WL_NAME.yaml
 else
   file_name=../../namespaces/$FLUX_WL_NS/$FLUX_WL_NAME/${ENV}.yaml
